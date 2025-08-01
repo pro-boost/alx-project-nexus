@@ -1,4 +1,5 @@
 import TrendingMovies from '../components/TrendingMovies';
+import GenreSelector from '../components/GenreSelector';
 
 export default function Home() {
   return (
@@ -230,6 +231,7 @@ export default function Home() {
       </section>
 
       <TrendingMovies />
+      <GenreSelector />
     </div>
   );
 }
