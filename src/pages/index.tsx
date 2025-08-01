@@ -1,3 +1,5 @@
+import TrendingMovies from '../components/TrendingMovies';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -226,6 +228,8 @@ export default function Home() {
           </button>
         </div>
       </section>
+
+      <TrendingMovies />
     </div>
   );
 }
