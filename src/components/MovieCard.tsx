@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useFavorites } from '../utils/useFavorites';
-import { Movie, MovieCardProps } from '../types/movie';
+import { MovieCardProps } from '../types/movie';
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const { toggleFavorite, isFavorite } = useFavorites();

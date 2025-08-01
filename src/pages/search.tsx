@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { tmdb } from "../../lib/tmdb";
 import MovieCard from "../components/MovieCard";
-import { Movie, SearchPageProps } from "../types/movie";
+import { SearchPageProps } from "../types/movie";
 
 interface Genre {
   id: number;

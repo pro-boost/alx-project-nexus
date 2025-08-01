@@ -46,7 +46,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Feature 1 - Search */}
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
@@ -106,7 +106,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Action Movies */}
             <Link href="/genre/28" className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-red-500 to-pink-600 p-8 text-white cursor-pointer transform hover:scale-105 transition-transform block">
               <div className="relative z-10">
@@ -158,10 +158,12 @@ export default function Home() {
         </div>
       </section>
 
-
-
-      <SearchBar />
-      <TrendingMovies />
+      {/* Trending Movies Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <TrendingMovies />
+        </div>
+      </section>
     </div>
   );
 }
