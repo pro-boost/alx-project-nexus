@@ -1,34 +1,39 @@
 import { useState, useEffect } from 'react';
-
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  release_date: string;
-}
+import { Movie } from '../types/movie';
 
 const FAVORITES_KEY = 'cinescope_favorites';
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<Movie[]>([]);
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  // Load favorites from localStorage on mount
+  // Handle hydration
   useEffect(() => {
-    const savedFavorites = localStorage.getItem(FAVORITES_KEY);
-    if (savedFavorites) {
-      try {
-        setFavorites(JSON.parse(savedFavorites));
-      } catch (error) {
-        console.error('Error parsing favorites from localStorage:', error);
-        localStorage.removeItem(FAVORITES_KEY);
+    setIsHydrated(true);
+    
+    // Load favorites from localStorage
+    try {
+      const savedFavorites = localStorage.getItem(FAVORITES_KEY);
+      if (savedFavorites) {
+        const parsed = JSON.parse(savedFavorites);
+        setFavorites(parsed);
       }
+    } catch (error) {
+      console.error('Error loading favorites:', error);
+      localStorage.removeItem(FAVORITES_KEY);
     }
   }, []);
 
-  // Save favorites to localStorage whenever favorites change
+  // Save favorites to localStorage whenever favorites change (only after hydration)
   useEffect(() => {
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
-  }, [favorites]);
+    if (!isHydrated) return;
+    
+    try {
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+    } catch (error) {
+      console.error('Error saving favorites:', error);
+    }
+  }, [favorites, isHydrated]);
 
   const addToFavorites = (movie: Movie) => {
     setFavorites(prev => {

@@ -1,35 +1,28 @@
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
-import { tmdb } from '../../../lib/tmdb';
-import MovieCard from '../../components/MovieCard';
-
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  release_date: string;
-  overview: string;
-  vote_average: number;
-}
+import { GetServerSideProps } from "next";
+import Head from "next/head";
+import { tmdb } from "../../../lib/tmdb";
+import MovieCard from "../../components/MovieCard";
+import { Movie, GenrePageProps } from "../../types/movie";
 
 interface Genre {
   id: number;
   name: string;
 }
 
-interface GenrePageProps {
-  movies: Movie[];
-  genre: Genre;
-  currentPage: number;
-  totalPages: number;
-}
-
-const GenrePage: React.FC<GenrePageProps> = ({ movies, genre, currentPage, totalPages }) => {
+const GenrePage: React.FC<GenrePageProps> = ({
+  movies,
+  genre,
+  currentPage,
+  totalPages,
+}) => {
   return (
     <>
       <Head>
         <title>{genre.name} Movies - CineScope</title>
-        <meta name="description" content={`Discover the best ${genre.name} movies on CineScope`} />
+        <meta
+          name="description"
+          content={`Discover the best ${genre.name} movies on CineScope`}
+        />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -86,7 +79,8 @@ const GenrePage: React.FC<GenrePageProps> = ({ movies, genre, currentPage, total
                 No movies found
               </h2>
               <p className="text-gray-600">
-                We couldn't find any {genre.name.toLowerCase()} movies at the moment.
+                We couldn&apos;t find any {genre.name.toLowerCase()} movies at
+                the moment.
               </p>
             </div>
           )}
@@ -97,13 +91,15 @@ const GenrePage: React.FC<GenrePageProps> = ({ movies, genre, currentPage, total
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id, page = '1' } = context.query;
+  const { id, page = "1" } = context.query;
   const currentPage = parseInt(page as string, 10);
 
   try {
     // Fetch genre details
-    const genreResponse = await tmdb.get('/genre/movie/list');
-    const genre = genreResponse.data.genres.find((g: Genre) => g.id === parseInt(id as string, 10));
+    const genreResponse = await tmdb.get("/genre/movie/list");
+    const genre = genreResponse.data.genres.find(
+      (g: Genre) => g.id === parseInt(id as string, 10)
+    );
 
     if (!genre) {
       return {
@@ -112,11 +108,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 
     // Fetch movies by genre
-    const moviesResponse = await tmdb.get('/discover/movie', {
+    const moviesResponse = await tmdb.get("/discover/movie", {
       params: {
         with_genres: id,
         page: currentPage,
-        sort_by: 'popularity.desc',
+        sort_by: "popularity.desc",
       },
     });
 
@@ -132,7 +128,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   } catch (error) {
-    console.error('Error fetching genre movies:', error);
+    console.error("Error fetching genre movies:", error);
     return {
       notFound: true,
     };

@@ -1,17 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useFavorites } from '../utils/useFavorites';
-
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  release_date: string;
-}
-
-interface MovieCardProps {
-  movie: Movie;
-}
+import { Movie, MovieCardProps } from '../types/movie';
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const { toggleFavorite, isFavorite } = useFavorites();
@@ -28,11 +19,20 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       <Link href={`/movie/${movie.id}`}>
         <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer">
           <div className="relative">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              className="w-full h-auto object-cover"
-            />
+            {movie.poster_path ? (
+              <Image
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                width={500}
+                height={750}
+                className="w-full h-auto object-cover"
+                priority={false}
+              />
+            ) : (
+              <div className="w-full h-[300px] bg-gray-200 flex items-center justify-center">
+                <span className="text-gray-500">No Image</span>
+              </div>
+            )}
             {/* Favorite Button */}
             <button
               onClick={handleFavoriteClick}

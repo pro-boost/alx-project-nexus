@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { tmdb } from '../../lib/tmdb';
-import MovieCard from './MovieCard';
-
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string;
-  release_date: string;
-}
+import React, { useEffect, useState } from "react";
+import { tmdb } from "../../lib/tmdb";
+import MovieCard from "./MovieCard";
+import { Movie } from "../types/movie";
 
 const TrendingMovies: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -17,10 +11,10 @@ const TrendingMovies: React.FC = () => {
   useEffect(() => {
     const fetchTrendingMovies = async () => {
       try {
-        const response = await tmdb.get('/trending/movie/week');
+        const response = await tmdb.get("/trending/movie/week");
         setMovies(response.data.results);
       } catch (err) {
-        setError('Failed to fetch trending movies.');
+        setError("Failed to fetch trending movies.");
         console.error(err);
       } finally {
         setLoading(false);
