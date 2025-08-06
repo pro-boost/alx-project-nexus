@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,9 +11,9 @@ const Navigation: React.FC = () => {
   };
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/favorites", label: "Favorites" },
-    { href: "/genres", label: "Browse Genres" },
+    { href: '/', label: 'Home' },
+    { href: '/favorites', label: 'Favorites' },
+    { href: '/genres', label: 'Browse Genres' },
   ];
 
   return (
@@ -32,9 +32,7 @@ const Navigation: React.FC = () => {
                   <path d="M2 6a2 2 0 012-2h6l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
                 </svg>
               </div>
-              <span className="ml-2 text-xl font-bold text-gray-900">
-                CineScope
-              </span>
+              <span className="ml-2 text-xl font-bold text-gray-900">CineScope</span>
             </div>
           </Link>
 
@@ -46,8 +44,8 @@ const Navigation: React.FC = () => {
                 href={link.href}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                   isActive(link.href)
-                    ? "text-blue-600 bg-blue-50"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                 }`}
               >
                 {link.label}
@@ -109,8 +107,8 @@ const Navigation: React.FC = () => {
                 href={link.href}
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                   isActive(link.href)
-                    ? "text-blue-600 bg-blue-50"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-white"
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-gray-700 hover:text-blue-600 hover:bg-white'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >

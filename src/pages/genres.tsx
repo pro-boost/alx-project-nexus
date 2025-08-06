@@ -1,8 +1,8 @@
-import React from "react";
-import { GetServerSideProps } from "next";
-import Head from "next/head";
-import Link from "next/link";
-import { tmdb } from "../../lib/tmdb";
+import React from 'react';
+import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
+import { tmdb } from '../../lib/tmdb';
 
 interface Genre {
   id: number;
@@ -18,10 +18,7 @@ const GenresPage: React.FC<GenresPageProps> = ({ genres }) => {
     <>
       <Head>
         <title>Browse by Genre - CineScope</title>
-        <meta
-          name="description"
-          content="Browse movies by genre on CineScope"
-        />
+        <meta name="description" content="Browse movies by genre on CineScope" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -122,12 +119,9 @@ const GenresPage: React.FC<GenresPageProps> = ({ genres }) => {
                   />
                 </svg>
               </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">
-                No genres available
-              </h3>
+              <h3 className="mt-4 text-lg font-medium text-gray-900">No genres available</h3>
               <p className="mt-2 text-gray-500">
-                Unable to load movie genres at this time. Please try again
-                later.
+                Unable to load movie genres at this time. Please try again later.
               </p>
               <Link
                 href="/"
@@ -145,15 +139,15 @@ const GenresPage: React.FC<GenresPageProps> = ({ genres }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const response = await tmdb.get("/genre/movie/list");
-
+    const response = await tmdb.get('/genre/movie/list');
+    
     return {
       props: {
         genres: response.data.genres || [],
       },
     };
   } catch (error) {
-    console.error("Error fetching genres:", error);
+    console.error('Error fetching genres:', error);
     return {
       props: {
         genres: [],

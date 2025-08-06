@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { tmdb } from "../../lib/tmdb";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { tmdb } from '../../lib/tmdb';
 
 interface Genre {
   id: number;
@@ -15,10 +15,10 @@ const GenreSelector: React.FC = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const response = await tmdb.get("/genre/movie/list");
+        const response = await tmdb.get('/genre/movie/list');
         setGenres(response.data.genres);
       } catch (err) {
-        setError("Failed to fetch genres.");
+        setError('Failed to fetch genres.');
         console.error(err);
       } finally {
         setLoading(false);
@@ -56,7 +56,11 @@ const GenreSelector: React.FC = () => {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
           {genres.map((genre) => (
-            <Link key={genre.id} href={`/genre/${genre.id}`} className="group">
+            <Link
+              key={genre.id}
+              href={`/genre/${genre.id}`}
+              className="group"
+            >
               <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-6 text-center border-2 border-transparent hover:border-blue-500 transform hover:scale-105">
                 <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
                   {genre.name}

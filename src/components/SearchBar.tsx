@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { tmdb } from "../../lib/tmdb";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { tmdb } from '../../lib/tmdb';
 
 interface Genre {
   id: number;
@@ -8,8 +8,8 @@ interface Genre {
 }
 
 const SearchBar: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedGenre, setSelectedGenre] = useState('');
   const [genres, setGenres] = useState<Genre[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -17,10 +17,10 @@ const SearchBar: React.FC = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const response = await tmdb.get("/genre/movie/list");
+        const response = await tmdb.get('/genre/movie/list');
         setGenres(response.data.genres);
       } catch (error) {
-        console.error("Error fetching genres:", error);
+        console.error('Error fetching genres:', error);
       }
     };
 
@@ -29,7 +29,7 @@ const SearchBar: React.FC = () => {
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     if (!searchQuery.trim() && !selectedGenre) {
       return;
     }
@@ -39,17 +39,15 @@ const SearchBar: React.FC = () => {
     try {
       if (searchQuery.trim()) {
         // Navigate to search results page
-        router.push(
-          `/search?q=${encodeURIComponent(searchQuery.trim())}${
-            selectedGenre ? `&genre=${selectedGenre}` : ""
-          }`
-        );
+        router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}${
+          selectedGenre ? `&genre=${selectedGenre}` : ''
+        }`);
       } else if (selectedGenre) {
         // Navigate to genre page
         router.push(`/genre/${selectedGenre}`);
       }
     } catch (error) {
-      console.error("Search error:", error);
+      console.error('Search error:', error);
     } finally {
       setLoading(false);
     }
@@ -58,7 +56,7 @@ const SearchBar: React.FC = () => {
   const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const genreId = e.target.value;
     setSelectedGenre(genreId);
-
+    
     if (genreId && !searchQuery.trim()) {
       // Auto-navigate to genre page when genre is selected without search query
       router.push(`/genre/${genreId}`);
@@ -68,10 +66,7 @@ const SearchBar: React.FC = () => {
   return (
     <section className="py-8 bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <form
-          onSubmit={handleSearch}
-          className="flex flex-col sm:flex-row gap-4 items-center justify-center"
-        >
+        <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4 items-center justify-center">
           {/* Search Input */}
           <div className="flex-1 max-w-md">
             <div className="relative">
@@ -124,11 +119,7 @@ const SearchBar: React.FC = () => {
           >
             {loading ? (
               <>
-                <svg
-                  className="animate-spin h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
+                <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
                   <circle
                     className="opacity-25"
                     cx="12"
@@ -146,7 +137,7 @@ const SearchBar: React.FC = () => {
                 Searching...
               </>
             ) : (
-              "Search"
+              'Search'
             )}
           </button>
         </form>

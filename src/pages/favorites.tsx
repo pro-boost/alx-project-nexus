@@ -1,8 +1,8 @@
-import React from "react";
-import Head from "next/head";
-import Link from "next/link";
-import { useFavorites } from "../utils/useFavorites";
-import MovieCard from "../components/MovieCard";
+import React from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import useFavorites from '../utils/useFavorites';
+import MovieCard from '../components/MovieCard';
 
 const FavoritesPage: React.FC = () => {
   const { favorites, clearFavorites } = useFavorites();
@@ -11,10 +11,7 @@ const FavoritesPage: React.FC = () => {
     <>
       <Head>
         <title>My Favorite Movies - CineScope</title>
-        <meta
-          name="description"
-          content="Your favorite movies collection on CineScope"
-        />
+        <meta name="description" content="Your favorite movies collection on CineScope" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -38,11 +35,10 @@ const FavoritesPage: React.FC = () => {
                   My Favorite Movies
                 </h1>
                 <p className="mt-2 text-gray-600">
-                  {favorites.length > 0
-                    ? `You have ${favorites.length} favorite movie${
-                        favorites.length !== 1 ? "s" : ""
-                      }`
-                    : "You haven't added any favorite movies yet"}
+                  {favorites.length > 0 
+                    ? `You have ${favorites.length} favorite movie${favorites.length !== 1 ? 's' : ''}`
+                    : 'You haven\'t added any favorite movies yet'
+                  }
                 </p>
               </div>
               <div className="flex items-center gap-4">
@@ -84,12 +80,9 @@ const FavoritesPage: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">
-                No favorite movies yet
-              </h3>
+              <h3 className="mt-4 text-lg font-medium text-gray-900">No favorite movies yet</h3>
               <p className="mt-2 text-gray-500">
-                Start exploring movies and click the heart icon to add them to
-                your favorites.
+                Start exploring movies and click the heart icon to add them to your favorites.
               </p>
               <Link
                 href="/"

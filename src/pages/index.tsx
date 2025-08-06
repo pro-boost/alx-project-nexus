@@ -1,7 +1,7 @@
 import TrendingMovies from '../components/TrendingMovies';
 import SearchBar from '../components/SearchBar';
 import Link from 'next/link';
-import { useFavorites } from '../utils/useFavorites';
+import useFavorites from '../utils/useFavorites';
 
 export default function Home() {
   const { favorites } = useFavorites();

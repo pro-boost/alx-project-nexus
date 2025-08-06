@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useFavorites } from '../utils/useFavorites';
+import useFavorites from '../utils/useFavorites';
 import { MovieCardProps } from '../types/movie';
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {

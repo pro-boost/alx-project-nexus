@@ -1,7 +1,7 @@
-import { GetServerSideProps } from "next";
-import Image from "next/image";
-import Head from "next/head";
-import { tmdb } from "../../../lib/tmdb";
+import { GetServerSideProps } from 'next';
+import Image from 'next/image';
+import Head from 'next/head';
+import { tmdb } from '../../../lib/tmdb';
 
 interface Genre {
   id: number;
@@ -29,7 +29,7 @@ interface MovieDetailPageProps {
 const MovieDetailPage: React.FC<MovieDetailPageProps> = ({ movie }) => {
   const posterUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : "/placeholder-movie.jpg";
+    : '/placeholder-movie.jpg';
 
   const backdropUrl = movie.backdrop_path
     ? `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`
@@ -85,14 +85,10 @@ const MovieDetailPage: React.FC<MovieDetailPageProps> = ({ movie }) => {
 
             {/* Movie Info */}
             <div className="flex-1">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                {movie.title}
-              </h1>
-
+              <h1 className="text-4xl md:text-5xl font-bold mb-2">{movie.title}</h1>
+              
               {movie.tagline && (
-                <p className="text-xl text-gray-300 italic mb-4">
-                  {movie.tagline}
-                </p>
+                <p className="text-xl text-gray-300 italic mb-4">{movie.tagline}</p>
               )}
 
               {/* Rating and Runtime */}
@@ -104,8 +100,8 @@ const MovieDetailPage: React.FC<MovieDetailPageProps> = ({ movie }) => {
                         key={i}
                         className={`w-5 h-5 ${
                           i < Math.floor(movie.vote_average / 2)
-                            ? "text-yellow-400"
-                            : "text-gray-600"
+                            ? 'text-yellow-400'
+                            : 'text-gray-600'
                         }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
@@ -117,22 +113,18 @@ const MovieDetailPage: React.FC<MovieDetailPageProps> = ({ movie }) => {
                   <span className="text-lg font-semibold">
                     {formatRating(movie.vote_average)}/5
                   </span>
-                  <span className="text-gray-400">
-                    ({movie.vote_count} votes)
-                  </span>
+                  <span className="text-gray-400">({movie.vote_count} votes)</span>
                 </div>
-
+                
                 {movie.runtime && (
                   <div className="text-gray-300">
-                    <span className="font-semibold">Runtime:</span>{" "}
-                    {formatRuntime(movie.runtime)}
+                    <span className="font-semibold">Runtime:</span> {formatRuntime(movie.runtime)}
                   </div>
                 )}
-
+                
                 {movie.release_date && (
                   <div className="text-gray-300">
-                    <span className="font-semibold">Release:</span>{" "}
-                    {new Date(movie.release_date).getFullYear()}
+                    <span className="font-semibold">Release:</span> {new Date(movie.release_date).getFullYear()}
                   </div>
                 )}
               </div>
@@ -158,7 +150,7 @@ const MovieDetailPage: React.FC<MovieDetailPageProps> = ({ movie }) => {
               <div>
                 <h3 className="text-2xl font-semibold mb-4">Overview</h3>
                 <p className="text-gray-300 leading-relaxed text-lg">
-                  {movie.overview || "No overview available."}
+                  {movie.overview || 'No overview available.'}
                 </p>
               </div>
             </div>
@@ -182,7 +174,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   } catch (error) {
-    console.error("Error fetching movie details:", error);
+    console.error('Error fetching movie details:', error);
     return {
       notFound: true,
     };
