@@ -1,8 +1,8 @@
-import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
-import useFavorites from '../utils/useFavorites';
-import MovieCard from '../components/MovieCard';
+import React from "react";
+import Head from "next/head";
+import Link from "next/link";
+import useFavorites from "../utils/useFavorites";
+import MovieCard from "../components/MovieCard";
 
 const FavoritesPage: React.FC = () => {
   const { favorites, clearFavorites } = useFavorites();
@@ -11,7 +11,10 @@ const FavoritesPage: React.FC = () => {
     <>
       <Head>
         <title>My Favorite Movies - CineScope</title>
-        <meta name="description" content="Your favorite movies collection on CineScope" />
+        <meta
+          name="description"
+          content="Your favorite movies collection on CineScope"
+        />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -35,10 +38,11 @@ const FavoritesPage: React.FC = () => {
                   My Favorite Movies
                 </h1>
                 <p className="mt-2 text-gray-600">
-                  {favorites.length > 0 
-                    ? `You have ${favorites.length} favorite movie${favorites.length !== 1 ? 's' : ''}`
-                    : 'You haven\'t added any favorite movies yet'
-                  }
+                  {favorites.length > 0
+                    ? `You have ${favorites.length} favorite movie${
+                        favorites.length !== 1 ? "s" : ""
+                      }`
+                    : "You haven't added any favorite movies yet"}
                 </p>
               </div>
               <div className="flex items-center gap-4">
@@ -64,7 +68,7 @@ const FavoritesPage: React.FC = () => {
         {/* Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {favorites.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
               {favorites.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} />
               ))}
@@ -80,9 +84,12 @@ const FavoritesPage: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">No favorite movies yet</h3>
+              <h3 className="mt-4 text-lg font-medium text-gray-900">
+                No favorite movies yet
+              </h3>
               <p className="mt-2 text-gray-500">
-                Start exploring movies and click the heart icon to add them to your favorites.
+                Start exploring movies and click the heart icon to add them to
+                your favorites.
               </p>
               <Link
                 href="/"

@@ -17,24 +17,24 @@ const GenrePage: React.FC<GenrePageProps> = ({
   totalPages,
 }) => {
   const [filteredMovies, setFilteredMovies] = useState(initialMovies);
-  const [sortBy, setSortBy] = useState('popularity.desc');
-  const [yearFilter, setYearFilter] = useState('');
-  const [ratingFilter, setRatingFilter] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState("popularity.desc");
+  const [yearFilter, setYearFilter] = useState("");
+  const [ratingFilter, setRatingFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     let filtered = [...initialMovies];
 
     // Apply search filter
     if (searchQuery.trim()) {
-      filtered = filtered.filter(movie =>
+      filtered = filtered.filter((movie) =>
         movie.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
     // Apply year filter
     if (yearFilter) {
-      filtered = filtered.filter(movie => {
+      filtered = filtered.filter((movie) => {
         const movieYear = new Date(movie.release_date).getFullYear();
         return movieYear.toString() === yearFilter;
       });
@@ -43,27 +43,33 @@ const GenrePage: React.FC<GenrePageProps> = ({
     // Apply rating filter
     if (ratingFilter) {
       const minRating = parseFloat(ratingFilter);
-      filtered = filtered.filter(movie => movie.vote_average >= minRating);
+      filtered = filtered.filter((movie) => movie.vote_average >= minRating);
     }
 
     // Apply sorting
     filtered.sort((a, b) => {
       switch (sortBy) {
-        case 'popularity.desc':
+        case "popularity.desc":
           return b.popularity - a.popularity;
-        case 'popularity.asc':
+        case "popularity.asc":
           return a.popularity - b.popularity;
-        case 'vote_average.desc':
+        case "vote_average.desc":
           return b.vote_average - a.vote_average;
-        case 'vote_average.asc':
+        case "vote_average.asc":
           return a.vote_average - b.vote_average;
-        case 'release_date.desc':
-          return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
-        case 'release_date.asc':
-          return new Date(a.release_date).getTime() - new Date(b.release_date).getTime();
-        case 'title.asc':
+        case "release_date.desc":
+          return (
+            new Date(b.release_date).getTime() -
+            new Date(a.release_date).getTime()
+          );
+        case "release_date.asc":
+          return (
+            new Date(a.release_date).getTime() -
+            new Date(b.release_date).getTime()
+          );
+        case "title.asc":
           return a.title.localeCompare(b.title);
-        case 'title.desc':
+        case "title.desc":
           return b.title.localeCompare(a.title);
         default:
           return 0;
@@ -78,10 +84,10 @@ const GenrePage: React.FC<GenrePageProps> = ({
   };
 
   const clearFilters = () => {
-    setSearchQuery('');
-    setYearFilter('');
-    setRatingFilter('');
-    setSortBy('popularity.desc');
+    setSearchQuery("");
+    setYearFilter("");
+    setRatingFilter("");
+    setSortBy("popularity.desc");
   };
 
   return (
@@ -104,7 +110,7 @@ const GenrePage: React.FC<GenrePageProps> = ({
             <p className="text-lg md:text-xl text-center text-blue-100 mb-6">
               Discover amazing {genre.name.toLowerCase()} movies
             </p>
-            
+
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto">
               <div className="relative">
@@ -170,8 +176,13 @@ const GenrePage: React.FC<GenrePageProps> = ({
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="">All Years</option>
-                    {Array.from({ length: 30 }, (_, i) => new Date().getFullYear() - i).map(year => (
-                      <option key={year} value={year.toString()}>{year}</option>
+                    {Array.from(
+                      { length: 30 },
+                      (_, i) => new Date().getFullYear() - i
+                    ).map((year) => (
+                      <option key={year} value={year.toString()}>
+                        {year}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -215,7 +226,7 @@ const GenrePage: React.FC<GenrePageProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {filteredMovies.length > 0 ? (
             <>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
                 {filteredMovies.map((movie) => (
                   <MovieCard key={movie.id} movie={movie} />
                 ))}
@@ -249,17 +260,28 @@ const GenrePage: React.FC<GenrePageProps> = ({
           ) : (
             <div className="text-center py-16">
               <div className="max-w-md mx-auto">
-                <svg className="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <svg
+                  className="mx-auto h-12 w-12 text-gray-400 mb-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
                 </svg>
                 <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4">
-                  {searchQuery || yearFilter || ratingFilter ? 'No movies match your filters' : 'No movies found'}
+                  {searchQuery || yearFilter || ratingFilter
+                    ? "No movies match your filters"
+                    : "No movies found"}
                 </h2>
                 <p className="text-gray-600 mb-6">
-                  {searchQuery || yearFilter || ratingFilter 
-                    ? 'Try adjusting your search criteria or filters to find more movies.'
-                    : `We couldn't find any ${genre.name.toLowerCase()} movies at the moment.`
-                  }
+                  {searchQuery || yearFilter || ratingFilter
+                    ? "Try adjusting your search criteria or filters to find more movies."
+                    : `We couldn't find any ${genre.name.toLowerCase()} movies at the moment.`}
                 </p>
                 {(searchQuery || yearFilter || ratingFilter) && (
                   <button

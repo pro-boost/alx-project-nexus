@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-blue-400">Nexus</h3>
+            <h3 className="text-2xl font-bold text-blue-400">CineScope</h3>
             <p className="text-gray-300 leading-relaxed">
               Your central hub for all things digital. Discover, connect, and
               explore a world of information and services.
@@ -68,7 +68,7 @@ export default function Footer() {
                 >
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                 </svg>
-                info@nexus.com
+                info@CineScope.com
               </p>
               <p className="text-gray-300 flex items-center">
                 <svg

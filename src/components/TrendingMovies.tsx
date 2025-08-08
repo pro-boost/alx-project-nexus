@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { tmdb } from '../../lib/tmdb';
-import MovieCard from './MovieCard';
-import { Movie } from '../types/movie';
+import React, { useEffect, useState } from "react";
+import { tmdb } from "../../lib/tmdb";
+import MovieCard from "./MovieCard";
+import { Movie } from "../types/movie";
 
 const TrendingMovies: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -11,10 +11,10 @@ const TrendingMovies: React.FC = () => {
   useEffect(() => {
     const fetchTrendingMovies = async () => {
       try {
-        const response = await tmdb.get('/trending/movie/week');
+        const response = await tmdb.get("/trending/movie/week");
         setMovies(response.data.results);
       } catch (err) {
-        setError('Failed to fetch trending movies.');
+        setError("Failed to fetch trending movies.");
         console.error(err);
       } finally {
         setLoading(false);
@@ -38,7 +38,7 @@ const TrendingMovies: React.FC = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
           Trending Movies
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
           {movies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
