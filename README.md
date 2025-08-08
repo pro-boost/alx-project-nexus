@@ -284,8 +284,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ by [Your Name]**
+**Built by Rrob-boost**
 
-For questions or support, please open an issue or contact [your-email@example.com]
+For questions or support, please open an issue or contact [conatct@mohamed-b.com]
 
 _CineScope - Discover your next favorite movie_ 🎬
