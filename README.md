@@ -9,19 +9,19 @@ A modern, responsive movie discovery application built with Next.js and TypeScri
 ### Key Screenshots
 
 - **Homepage:**  
-  ![Homepage with hero section, search bar, and trending movies](./public/screenshots/homepage.png)
+  <img src="./public/screenshots/homepage.png" alt="Homepage with hero section, search bar, and trending movies" width="600">
 
 - **Movie Details:**  
-  ![Movie details page with backdrop, rating, and overview](./public/screenshots/movie-details.png)
+  <img src="./public/screenshots/movie-details.png" alt="Movie details page with backdrop, rating, and overview" width="600">
 
 - **Genre Browsing:**  
-  ![Genre browsing page showing Fantasy movies with filters](./public/screenshots/genre-browsing.png)
+  <img src="./public/screenshots/genre-browsing.png" alt="Genre browsing page showing Fantasy movies with filters" width="600">
 
 - **Search Results:**  
-  ![Search results page with genre filter and pagination](./public/screenshots/search-results.png)
+  <img src="./public/screenshots/search-results.png" alt="Search results page with genre filter and pagination" width="600">
 
 - **Favorites:**  
-  ![Favorites page with clear all button and saved movies](./public/screenshots/favorites.png)
+  <img src="./public/screenshots/favorites.png" alt="Favorites page with clear all button and saved movies" width="600">
 
 ## ✨ Features
 
