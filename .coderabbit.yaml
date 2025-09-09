@@ -1,0 +1,107 @@
+language: en
+
+reviews:
+  # Review tone and workflow
+  profile: "chill" # Options: "chill", "assertive"
+  request_changes_workflow: true
+
+  # Auto-reviews for pull requests
+  auto_review:
+    enabled: true
+    drafts: false
+
+  # Security scanning
+  security_scanning:
+    enabled: true
+    scan_dependencies: true
+    scan_secrets: true
+    vulnerability_alerts: true
+    sast_enabled: true
+
+  # AI-powered suggestions
+  # Path-based review instructions (generalized for any project)
+  path_instructions:
+    # TypeScript
+    - path: "**/*.ts"
+      instructions: |
+        - Enforce strict typing and type safety
+        - Validate input/output contracts
+        - Ensure consistent error handling
+        - Review for security issues in functions
+        - Avoid circular dependencies
+
+    # JavaScript
+    - path: "**/*.js"
+      instructions: |
+        - Check for code smells (globals, nested callbacks)
+        - Ensure async/await or Promises are handled safely
+        - Look for memory leaks or unhandled rejections
+        - Review maintainability and module organization
+
+    # Frontend components
+    - path: "**/*.{tsx,jsx}"
+      instructions: |        - Ensure accessibility (ARIA, keyboard navigation)
+        - Optimize rendering performance (memoization, re-renders)
+        - Validate safe rendering (XSS prevention)
+        - Review state and lifecycle management
+        - Encourage component reusability and maintainability
+
+    # API & backend logic
+    - path: "**/api/**/*.ts"
+      instructions: |
+        - Validate input sanitization
+        - Enforce authentication and authorization
+        - Prevent SQL/NoSQL injection
+        - Ensure error messages do not leak sensitive data
+        - Review caching, rate limiting, and throttling
+
+    # Authentication & authorization
+    - path: "**/auth/**/*"
+      instructions: |
+        - Validate secure password handling
+        - Review session and token storage
+        - Enforce HTTPS and secure cookie usage
+        - Check JWT/OAuth flows for security best practices
+        - Ensure brute-force and rate limiting protections
+
+    # Infrastructure & DevOps
+    - path: "**/Dockerfile"
+      instructions: |
+        - Use minimal and secure base images
+        - Avoid hardcoded secrets
+        - Prefer multi-stage builds
+        - Run as non-root user when possible
+
+    - path: "**/*.yml"
+      instructions: |
+        - Validate CI/CD workflow security
+        - Ensure secrets are handled safely
+        - Review caching and artifact strategies
+        - Verify linting, testing, and security scans are enforced
+
+    # Tests
+    - path: "**/*.test.*"
+      instructions: |
+        - Ensure meaningful test coverage
+        - Validate correctness of assertions
+        - Prevent flaky tests
+        - Ensure mocks and stubs are appropriate
+
+    # Documentation
+    - path: "**/*.md"
+      instructions: |
+        - Verify documentation accuracy
+        - Ensure setup and usage instructions are clear
+        - Check for up-to-date security notes
+        - Validate contribution guidelines if present
+
+  # Severity levels
+  severity:
+  code_metrics:
+    enabled: true
+    analyze:
+      - cyclomatic_complexity
+      - cognitive_complexity
+      - maintainability_index
+      - code_duplication
+      - test_coverage
