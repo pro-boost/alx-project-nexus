@@ -11,14 +11,24 @@ reviews:
     drafts: false
 
   # Security scanning
-  security_scanning:
-    enabled: true
-    scan_dependencies: true
-    scan_secrets: true
-    vulnerability_alerts: true
-    sast_enabled: true
-
-  # AI-powered suggestions
+  # Security & lint tools (schema-compliant)
+  tools:
+    gitleaks:
+      enabled: true
+    osvScanner:
+      enabled: true
+    checkov:
+      enabled: true
+    semgrep:
+      enabled: true
+    hadolint:
+      enabled: true
+    yamllint:
+      enabled: true
+    eslint:
+      enabled: true
+    ruff:
+      enabled: true  # AI-powered suggestions
   # Path-based review instructions (generalized for any project)
   path_instructions:
     # TypeScript
