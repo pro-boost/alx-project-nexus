@@ -1,3 +1,4 @@
+---
 language: en
 
 reviews:
@@ -28,7 +29,7 @@ reviews:
     eslint:
       enabled: true
     ruff:
-      enabled: true  # AI-powered suggestions
+      enabled: true # AI-powered suggestions
   # Path-based review instructions (generalized for any project)
   path_instructions:
     # TypeScript
@@ -50,7 +51,8 @@ reviews:
 
     # Frontend components
     - path: "**/*.{tsx,jsx}"
-      instructions: |        - Ensure accessibility (ARIA, keyboard navigation)
+      instructions: |
+        - Ensure accessibility (ARIA, keyboard navigation)
         - Optimize rendering performance (memoization, re-renders)
         - Validate safe rendering (XSS prevention)
         - Review state and lifecycle management
@@ -107,6 +109,7 @@ reviews:
 
   # Severity levels
   severity:
+
   code_metrics:
     enabled: true
     analyze:
